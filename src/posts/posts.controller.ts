@@ -3,8 +3,9 @@ import {
   Controller,
   Get,
   Param,
-  ParseIntPipe,
   Post,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CreatePostDTO } from 'src/dto/posts/create-post.dto';
 import { PostsService } from './posts.service';
@@ -15,22 +16,17 @@ export class PostsController {
 
   @Get()
   async findAll() {
-    const res = await this.postService.queryAll();
-
-    return res;
+    return await this.postService.queryAll();
   }
 
   @Get(':id')
   async findById(@Param('id') id: string) {
-    const res = await this.postService.queryByID(id);
-
-    return res;
+    return await this.postService.queryByID(id);
   }
 
   @Post('create')
+  @UsePipes(new ValidationPipe())
   async create(@Body() body: CreatePostDTO) {
-    const res = await this.postService.create(body);
-
-    return res;
+    return await this.postService.create(body);
   }
 }
