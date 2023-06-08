@@ -3,3 +3,10 @@
 ### NETWORK NAME: SEPOLIA
 
 ### NETWORK PROVIDER: https://rpc2.sepolia.org/
+
+---
+
+## TODO
+
+- [ ] Walidacja POST
+- [ ] IPFS
