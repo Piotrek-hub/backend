@@ -24,14 +24,11 @@ export class PostsService {
     return this.postModel.findOne({ _id: id }).exec();
   }
 
-  async create(postDTO: CreatePostDTO) {
-    if (!Web3Utils.isAddress(postDTO.author)) {
-      throw new HttpException(
-        'Invalid author (author field is of type address or address is invalid)',
-        HttpStatus.UNAUTHORIZED,
-      );
-    }
+  async queryUserPosts(address: string): Promise<Post[]> {
+    return this.postModel.find({ author: address }).exec();
+  }
 
+  async create(postDTO: CreatePostDTO) {
     const username = await contract.methods.users(postDTO.author).call();
     if (username == '') {
       throw new HttpException('Username not found', HttpStatus.UNAUTHORIZED);

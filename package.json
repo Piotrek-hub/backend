@@ -25,6 +25,8 @@
     "@nestjs/jwt": "^10.0.3",
     "@nestjs/mongoose": "^9.2.2",
     "@nestjs/platform-express": "^9.0.0",
+    "@walletconnect/modal": "^2.4.5",
+    "@walletconnect/sign-client": "^2.8.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "ipfs-http-client": "^60.0.1",
@@ -33,9 +35,11 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
     "web3": "^1.10.0",
+    "web3-token": "^1.0.6",
     "web3-utils": "^4.0.1"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.21",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",

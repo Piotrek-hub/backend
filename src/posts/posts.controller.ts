@@ -2,7 +2,9 @@ import {
   Body,
   Controller,
   Get,
-  Param,
+  Headers,
+  HttpException,
+  HttpStatus,
   Post,
   UseGuards,
   UsePipes,
@@ -21,15 +23,14 @@ export class PostsController {
     return await this.postService.queryAll();
   }
 
-  @Get(':id')
-  async findById(@Param('id') id: string) {
-    return await this.postService.queryByID(id);
-  }
-
   @UseGuards(AuthGuard)
   @Post('create')
   @UsePipes(new ValidationPipe())
-  async create(@Body() body: CreatePostDTO) {
-    return await this.postService.create(body);
+  async create(@Headers() headers, @Body() body: CreatePostDTO) {
+    if (headers.address == body.author.toLowerCase()) {
+      return await this.postService.create(body);
+    }
+
+    throw new HttpException('Wrong address', HttpStatus.UNAUTHORIZED);
   }
 }

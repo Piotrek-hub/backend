@@ -6,4 +6,6 @@ export class CreateUserDTO {
 
   @IsNotEmpty()
   name: string;
+
+  description: string;
 }
